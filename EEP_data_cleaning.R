@@ -24,6 +24,12 @@ for(j in committee_names){
   committee_data <- rbind(committee_data, tempdf)
 }
 
+#export committee_data
+write.csv(committee_data, "committee_data.csv")
 
-
-
+#making print the number of attendants at each committees' events
+for(i in committee_names){
+  #(i)
+  #print(sum(committee_data[,14]==i))
+  print(paste(i, "count: ",sum(committee_data[,14]==i)))
+}
