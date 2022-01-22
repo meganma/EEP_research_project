@@ -27,9 +27,35 @@ for(j in committee_names){
 #export committee_data
 write.csv(committee_data, "committee_data.csv")
 
+#rename committee_data columns
+colnames(committee_data)[2] <- "Event Name"
+colnames(committee_data)[3] <- "Gender"
+colnames(committee_data)[5] <- "Race"
+colnames(committee_data)[6] <- "Transfer Status"
+colnames(committee_data)[4] <- "Sexual Orientation"
+colnames(committee_data)
+
 #making print the number of attendants at each committees' events
 for(i in committee_names){
   #(i)
   #print(sum(committee_data[,14]==i))
   print(paste(i, "count: ",sum(committee_data[,14]==i)))
 }
+
+## cleaning race/ethnicity column
+committee_data[committee_data$Race == "Asian, Middle Eastern",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Asian, Middle Eastern, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Asian, Middle Eastern, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Asian, Native Hawaiian or Pacific Islander, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Asian, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "biracial ",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Hispanic or Latinx, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Middle Eastern, White",]$Race <- "Multiracial"
+committee_data[committee_data$Race == "Native American, White",]$Race <- "Multiracial"
+
+
+#export committee_data
+write.csv(committee_data, "committee_data_race.csv")
+
+table(committee_data$Race)
+
